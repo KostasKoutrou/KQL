@@ -1,0 +1,18 @@
+//This query detects Top Level Domains of email senders with a high ratio of (detected emails / total emails)
+//For each TLD it counts the total detected emails (any detection) and the total number of emails, and it calculates the ratio detected emails/total emails
+//Calculate total count for each TLD
+let TotalCounts = EmailEvents
+| where Timestamp > ago(30d) //you can have a longer Timestamp if you stored the logs on a Log Analytics Workspace.
+| extend TLD = tostring(split(SenderFromDomain, ".")[-1])
+| summarize TotalCount = count() by TLD;
+//Calculate sum of counts for all threat types per TLD
+let ThreatCounts = EmailEvents
+| where Timestamp > ago(30d)
+| isnotempty(ThreatTypes)
+| extend TLD = tostring(split(SenderFromDomain, ".")[-1])
+| summarize ThreatTypeCount = count() by TLD;
+//Join results and calculate ratio
+TotalCounts
+| join kind=inner (ThreatCounts) on TLD
+| project TLD, Ratio = todouble(ThreatTypeCount) / todouble(TotalCount)
+| sort by Ratio desc
