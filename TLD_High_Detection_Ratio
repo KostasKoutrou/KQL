@@ -1,5 +1,6 @@
-//This query detects Top Level Domains of email senders with a high ratio of (detected emails / total emails)
-//For each TLD it counts the total detected emails (any detection) and the total number of emails, and it calculates the ratio detected emails/total emails
+//This query detects Top Level Domains of email senders with a high ratio of (detected emails / total emails).
+//You can use these results to potentially block TLDs or at least create an Exchange Transport Rule that appends a warning of suspicious sender.
+//For each TLD it counts the total detected emails (any detection) and the total number of emails, and it calculates the ratio detected emails/total emails.
 //Calculate total count for each TLD
 let TotalCounts = EmailEvents
 | where Timestamp > ago(30d) //you can have a longer Timestamp if you stored the logs on a Log Analytics Workspace.
