@@ -15,5 +15,5 @@ let ThreatCounts = EmailEvents
 //Join results and calculate ratio
 TotalCounts
 | join kind=inner (ThreatCounts) on TLD
-| project TLD, Ratio = todouble(ThreatTypeCount) / todouble(TotalCount)
+| project TLD, Ratio = todouble(ThreatTypeCount) / todouble(TotalCount), ThreatTypeCount, TotalCount
 | sort by Ratio desc
