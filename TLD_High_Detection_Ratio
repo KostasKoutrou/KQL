@@ -9,7 +9,7 @@ let TotalCounts = EmailEvents
 //Calculate sum of counts for all threat types per TLD
 let ThreatCounts = EmailEvents
 | where Timestamp > ago(30d)
-| isnotempty(ThreatTypes)
+| where isnotempty(ThreatTypes)
 | extend TLD = tostring(split(SenderFromDomain, ".")[-1])
 | summarize ThreatTypeCount = count() by TLD;
 //Join results and calculate ratio
