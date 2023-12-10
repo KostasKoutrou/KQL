@@ -5,7 +5,7 @@ This query detects Top Level Domains (TLD) of email senders with a high ratio of
 
 For each TLD it counts the total detected emails (any threat detection - spam/phish) and the total number of emails, and it calculates the following ratio:
 
-$\frac{Count\ of\ Emails\ with\ any\ Threat\ Detection}{Count\ of\ total\ Emails}$
+$\displaystyle \frac{Count\ of\ Emails\ with\ any\ Threat\ Detection}{Count\ of\ total\ Emails}$
 
 You can use TLDs with high ratios to:
 - Create an Exchange Transport Rule that appends a warning of suspicious sender (ref. for the best looking warning append I have found https://lazyadmin.nl/it/add-external-email-warning-to-office-365-and-outlook/), or
