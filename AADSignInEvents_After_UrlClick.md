@@ -1,8 +1,17 @@
-//These queries search for sign in logs after a URL click event. This can be used to identify any suspicious sign ins right after the URL click, indicating a potential phishing site.
+# KQL Query: Sign in Logs after URL Click Event
 
-//I have created two version for this one.
+## Description
+These queries search for sign in logs after a URL click event. This can be used to identify any suspicious sign ins right after the URL click, indicating a potential phishing site.
 
-//The first version is where you start by knowing the suspicious emails, and want to check if there were any URL click events for these emails, and sign ins after the URL click events.
+Below are two variations for this query.
+
+
+## Query starting from Emails
+
+This version is where you start by knowing the suspicious emails, and want to check if there were any URL click events originating from URL clicks from these emails, and sign ins after the URL click events.
+
+Remember to change the *\<email address\>* field with the sender you want to investigate.
+```kql
 let clickTimeWindow = 5; // define the time window in minutes for sign in after the click
 // Search for EmailEvents. You can add any filter you prefer or have as info.
 EmailEvents
@@ -27,9 +36,14 @@ EmailEvents
 Subject, LatestDeliveryLocation, UrlClickTimestamp, Url, ActionType, UrlClickIP, SignInTimestamp, Application, LogonType, ErrorCode, ResourceDisplayName,
 DeviceName, AadDeviceId, OSPlatform, DeviceTrustType, IsManaged, IsCompliant, UserAgent, Browser, ConditionalAccessPolicies, SigninIP, Country
 | sort by SignInTimestamp asc
+```
 
+## Query starting from the URL click event
+The second version is where you know the URL and want to search for sign ins after the URL Click Event.
 
-//The second version is where you know the URL and want to search for sign ins after the Url Click Event.
+Remember to change the *\<URL\>* field with the URL that you want to investigate.
+
+```kql
 let clickTimeWindow = 5; // define the time window in minutes for sign in after the click
 // Start by getting the timestamp and user info for each URL click event
 UrlClickEvents
@@ -47,3 +61,4 @@ UrlClickEvents
 | project Timestamp, NetworkMessageId, UrlClickTimestamp, Url, ActionType, UrlClickIP, SignInTimestamp, Application, LogonType, ErrorCode, ResourceDisplayName,
 DeviceName, AadDeviceId, OSPlatform, DeviceTrustType, IsManaged, IsCompliant, UserAgent, Browser, ConditionalAccessPolicies, SigninIP, Country
 | sort by SignInTimestamp asc
+```
