@@ -31,10 +31,12 @@ EmailEvents
 ) on AccountUpn
 | extend endTime = datetime_add('minute', clickTimeWindow, UrlClickTimestamp)
 | where SignInTimestamp > UrlClickTimestamp and SignInTimestamp <= endTime
-//Timestamp is the Timestamp that the email was sent at. If you rename it for better readability, the "hyperlink" NetworkMessageId get disabled, so the name was left as is.
+// Timestamp is the Timestamp that the email was sent at. If you rename it for better readability,
+// the "hyperlink" NetworkMessageId get disabled, so the name was left as is.
 | project Timestamp, NetworkMessageId, SenderFromAddress, SenderDisplayName, EmailSenderIP = SenderIPv4, RecipientEmailAddress,
-Subject, LatestDeliveryLocation, UrlClickTimestamp, Url, ActionType, UrlClickIP, SignInTimestamp, Application, LogonType, ErrorCode, ResourceDisplayName,
-DeviceName, AadDeviceId, OSPlatform, DeviceTrustType, IsManaged, IsCompliant, UserAgent, Browser, ConditionalAccessPolicies, SigninIP, Country
+Subject, LatestDeliveryLocation, UrlClickTimestamp, Url, ActionType, UrlClickIP, SignInTimestamp, Application, LogonType,
+ErrorCode, ResourceDisplayName, DeviceName, AadDeviceId, OSPlatform, DeviceTrustType, IsManaged, IsCompliant, UserAgent,
+Browser, ConditionalAccessPolicies, SigninIP, Country
 | sort by SignInTimestamp asc
 ```
 
@@ -58,7 +60,8 @@ UrlClickEvents
 ) on AccountUpn
 | extend endTime = datetime_add('minute', clickTimeWindow, UrlClickTimestamp)
 | where SignInTimestamp > UrlClickTimestamp and SignInTimestamp <= endTime
-| project Timestamp, NetworkMessageId, UrlClickTimestamp, Url, ActionType, UrlClickIP, SignInTimestamp, Application, LogonType, ErrorCode, ResourceDisplayName,
-DeviceName, AadDeviceId, OSPlatform, DeviceTrustType, IsManaged, IsCompliant, UserAgent, Browser, ConditionalAccessPolicies, SigninIP, Country
+| project Timestamp, NetworkMessageId, UrlClickTimestamp, Url, ActionType, UrlClickIP, SignInTimestamp, Application,
+LogonType, ErrorCode, ResourceDisplayName, DeviceName, AadDeviceId, OSPlatform, DeviceTrustType, IsManaged,
+IsCompliant, UserAgent, Browser, ConditionalAccessPolicies, SigninIP, Country
 | sort by SignInTimestamp asc
 ```
