@@ -19,7 +19,8 @@ EmailAttachmentInfo
 (
 DeviceFileEvents
 | where Timestamp > ago(30d)
-// You can uncomment the next line in case there are too many previous within Outlook and you prefer to investigate the actual file downloads.
+// You can uncomment the next line in case there are too many previous
+// within Outlook and you prefer to investigate the actual file downloads.
 // | where FolderPath !contains "Content.Outlook"
 ) on SHA256
 | sort by DeviceId asc, Timestamp desc
