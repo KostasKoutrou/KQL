@@ -23,6 +23,6 @@ EmailUrlInfo
 EmailEvents
 | where Timestamp > ago(30d)
 ) on NetworkMessageId
-| where LatestDeliveryLocation contains "inbox" or LatestDeliveryLocation contains "junk" //You can comment this line out to see successful blocks
+| where LatestDeliveryLocation contains "inbox" or LatestDeliveryLocation contains "junk" //You can comment this line out to investigate successful blocks
 | project-away Timestamp1, NetworkMessageId1
 ```
