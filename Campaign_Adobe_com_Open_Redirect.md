@@ -1,7 +1,7 @@
 # KQL Query: camapaign.adobe.com open redirect URLs in emails
 
 ## Description
-campaign.adobe.com open redirect is used to send phishing URLs. 
+campaign.adobe.com open redirect is used to send phishing URLs. For example:
 
 hxxps[:]//tap-rt-prod1-t[.]campaign[.]adobe[.]com/r/?id=h9ecb88b,c1e96b3,69fe0fb&p1=ryda[.]letsgrowth[.]org//90/<base64 of recipient's email address>
 
