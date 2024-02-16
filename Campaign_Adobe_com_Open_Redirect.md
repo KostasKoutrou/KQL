@@ -22,7 +22,7 @@ EmailUrlInfo
 (
 EmailEvents
 | where Timestamp > ago(30d)
-) on NetworkMessageId
 | where LatestDeliveryLocation contains "inbox" or LatestDeliveryLocation contains "junk" //You can comment this line out to investigate successful blocks
+) on NetworkMessageId
 | project-away Timestamp1, NetworkMessageId1
 ```
