@@ -3,7 +3,7 @@
 ## Description
 campaign.adobe.com open redirect is used to send phishing URLs. For example:
 
-hxxps[:]//tap-rt-prod1-t[.]campaign[.]adobe[.]com/r/?id=h9ecb88b,c1e96b3,69fe0fb&p1=ryda[.]letsgrowth[.]org//90/<base64 of recipient's email address>
+hxxps[:]//tap-rt-prod1-t[.]campaign[.]adobe[.]com/r/?id=h9ecb66d,c1e96b3,69fe0fb&p1=ryda[.]letsgrowth[.]org//90/<base64 of recipient's email address>
 
 When clicking the above link, the user is redirected to the site of the "p1" parameter.
 
