@@ -17,7 +17,7 @@ EmailUrlInfo
 | where Timestamp > ago(30d)
 | where Url contains "campaign.adobe.com"
 | extend Redirect = split(Url, "&p1=")[1]
-| where Redirect contains "." //I found this condition to be enough to keep the URLs only
+| where Redirect contains "." //This condition is enough to keep only the URLs.
 | join
 (
 EmailEvents
